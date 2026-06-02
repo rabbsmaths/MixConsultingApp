@@ -1,0 +1,11 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs
+/MixConsulting/obj
+/MiX_Consulting.Domain/bin/Debug/net8.0
+/MiX_Consulting.Domain/obj
+/MiX_Consulting.Infrastructure/obj
+/MiX_Consulting.Infrastructure/bin/Debug/net8.0
+/.github
