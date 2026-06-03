@@ -38,11 +38,6 @@ Public Class frmLogin
             Exit Sub
         End If
 
-        Dim freshHash As String = BCrypt.Net.BCrypt.HashPassword("Password123", 12)
-        System.Diagnostics.Debug.WriteLine("=== COPY THIS EXACT HASH ===")
-        System.Diagnostics.Debug.WriteLine(freshHash)
-        System.Diagnostics.Debug.WriteLine("============================")
-
         If _userRepo IsNot Nothing Then
             Dim user = _userRepo.GetByUsername(txtUsername.Text.Trim())
 
