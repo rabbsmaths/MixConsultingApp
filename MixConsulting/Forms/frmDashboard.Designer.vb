@@ -16,115 +16,129 @@ Partial Class frmDashboard
 
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container()
-        Me.sysTimer = New System.Windows.Forms.Timer(Me.components)
-        Me.kryptonSplitContainer1 = New Krypton.Toolkit.KryptonSplitContainer()
-        Me.panelLeftMenu = New Krypton.Toolkit.KryptonPanel()
-        Me.btnManageAddresses = New Krypton.Toolkit.KryptonButton()
-        Me.btnManageCompanies = New Krypton.Toolkit.KryptonButton()
-        Me.lblMenuTitle = New Krypton.Toolkit.KryptonLabel()
-        Me.panelMainWorkspace = New Krypton.Toolkit.KryptonPanel()
-        CType(Me.kryptonSplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.kryptonSplitContainer1.Panel1, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.kryptonSplitContainer1.Panel1.SuspendLayout()
-        CType(Me.kryptonSplitContainer1.Panel2, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.kryptonSplitContainer1.Panel2.SuspendLayout()
-        Me.kryptonSplitContainer1.SuspendLayout()
-        CType(Me.panelLeftMenu, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.panelLeftMenu.SuspendLayout()
-        CType(Me.panelMainWorkspace, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.SuspendLayout()
-        '
-        'sysTimer
-        '
-        Me.sysTimer.Interval = 1000
-        '
-        'kryptonSplitContainer1
-        '
-        Me.kryptonSplitContainer1.Cursor = System.Windows.Forms.Cursors.Default
-        Me.kryptonSplitContainer1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.kryptonSplitContainer1.Location = New System.Drawing.Point(0, 0)
-        Me.kryptonSplitContainer1.Name = "kryptonSplitContainer1"
-        '
-        'kryptonSplitContainer1.Panel1
-        '
-        Me.kryptonSplitContainer1.Panel1.Controls.Add(Me.panelLeftMenu)
-        '
-        'kryptonSplitContainer1.Panel2
-        '
-        Me.kryptonSplitContainer1.Panel2.Controls.Add(Me.panelMainWorkspace)
-        Me.kryptonSplitContainer1.Size = New System.Drawing.Size(1264, 681)
-        Me.kryptonSplitContainer1.SplitterDistance = 240
-        Me.kryptonSplitContainer1.TabIndex = 0
-        '
-        'panelLeftMenu
-        '
-        Me.panelLeftMenu.Controls.Add(Me.btnManageAddresses)
-        Me.panelLeftMenu.Controls.Add(Me.btnManageCompanies)
-        Me.panelLeftMenu.Controls.Add(Me.lblMenuTitle)
-        Me.panelLeftMenu.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.panelLeftMenu.Location = New System.Drawing.Point(0, 0)
-        Me.panelLeftMenu.Name = "panelLeftMenu"
-        Me.panelLeftMenu.Size = New System.Drawing.Size(240, 681)
-        Me.panelLeftMenu.StateCommon.Color1 = System.Drawing.Color.FromArgb(CType(23, Byte), CType(34, Byte), CType(59, Byte))
-        Me.panelLeftMenu.TabIndex = 0
-        '
-        'btnManageAddresses
-        '
-        Me.btnManageAddresses.Location = New System.Drawing.Point(12, 130)
-        Me.btnManageAddresses.Name = "btnManageAddresses"
-        Me.btnManageAddresses.Size = New System.Drawing.Size(216, 45)
-        Me.btnManageAddresses.StateCommon.Border.Rounding = 6
-        Me.btnManageAddresses.TabIndex = 2
-        Me.btnManageAddresses.Values.Text = "Manage Addresses"
-        '
-        'btnManageCompanies
-        '
-        Me.btnManageCompanies.Location = New System.Drawing.Point(12, 70)
-        Me.btnManageCompanies.Name = "btnManageCompanies"
-        Me.btnManageCompanies.Size = New System.Drawing.Size(216, 45)
-        Me.btnManageCompanies.StateCommon.Border.Rounding = 6
-        Me.btnManageCompanies.TabIndex = 1
-        Me.btnManageCompanies.Values.Text = "Manage Companies"
-        '
-        'lblMenuTitle
-        '
-        Me.lblMenuTitle.Location = New System.Drawing.Point(12, 20)
-        Me.lblMenuTitle.Name = "lblMenuTitle"
-        Me.lblMenuTitle.Size = New System.Drawing.Size(180, 24)
-        Me.lblMenuTitle.StateCommon.ShortText.Color1 = System.Drawing.Color.White
-        Me.lblMenuTitle.StateCommon.ShortText.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Bold)
-        Me.lblMenuTitle.Text = "NAVIGATION CORE"
-        '
-        'panelMainWorkspace
-        '
-        Me.panelMainWorkspace.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.panelMainWorkspace.Location = New System.Drawing.Point(0, 0)
-        Me.panelMainWorkspace.Name = "panelMainWorkspace"
-        Me.panelMainWorkspace.Size = New System.Drawing.Size(1019, 681)
-        Me.panelMainWorkspace.TabIndex = 0
-        '
-        'frmDashboard
-        '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 20.0!)
-        Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1264, 681)
-        Me.Controls.Add(Me.kryptonSplitContainer1)
-        Me.MinimumSize = New System.Drawing.Size(1024, 600)
-        Me.Name = "frmDashboard"
-        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "MiX Consulting - Enterprise Registry Monitor"
-        CType(Me.kryptonSplitContainer1.Panel1, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.kryptonSplitContainer1.Panel1.ResumeLayout(False)
-        CType(Me.kryptonSplitContainer1.Panel2, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.kryptonSplitContainer1.Panel2.ResumeLayout(False)
-        CType(Me.kryptonSplitContainer1, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.kryptonSplitContainer1.ResumeLayout(False)
-        CType(Me.panelLeftMenu, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.panelLeftMenu.ResumeLayout(False)
-        Me.panelLeftMenu.PerformLayout()
-        CType(Me.panelMainWorkspace, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.ResumeLayout(False)
+        components = New ComponentModel.Container()
+        sysTimer = New Timer(components)
+        kryptonSplitContainer1 = New Krypton.Toolkit.KryptonSplitContainer()
+        panelLeftMenu = New Krypton.Toolkit.KryptonPanel()
+        btnManageAddresses = New Krypton.Toolkit.KryptonButton()
+        btnManageCompanies = New Krypton.Toolkit.KryptonButton()
+        lblMenuTitle = New Krypton.Toolkit.KryptonLabel()
+        btnManageReps = New Krypton.Toolkit.KryptonButton()
+        panelMainWorkspace = New Krypton.Toolkit.KryptonPanel()
+        CType(kryptonSplitContainer1, ComponentModel.ISupportInitialize).BeginInit()
+        CType(kryptonSplitContainer1.Panel1, ComponentModel.ISupportInitialize).BeginInit()
+        kryptonSplitContainer1.Panel1.SuspendLayout()
+        CType(kryptonSplitContainer1.Panel2, ComponentModel.ISupportInitialize).BeginInit()
+        kryptonSplitContainer1.Panel2.SuspendLayout()
+        CType(panelLeftMenu, ComponentModel.ISupportInitialize).BeginInit()
+        panelLeftMenu.SuspendLayout()
+        CType(panelMainWorkspace, ComponentModel.ISupportInitialize).BeginInit()
+        SuspendLayout()
+        ' 
+        ' sysTimer
+        ' 
+        sysTimer.Interval = 1000
+        ' 
+        ' kryptonSplitContainer1
+        ' 
+        kryptonSplitContainer1.Dock = DockStyle.Fill
+        kryptonSplitContainer1.Location = New Point(0, 0)
+        ' 
+        ' 
+        ' 
+        kryptonSplitContainer1.Panel1.Controls.Add(panelLeftMenu)
+        ' 
+        ' 
+        ' 
+        kryptonSplitContainer1.Panel2.Controls.Add(panelMainWorkspace)
+        kryptonSplitContainer1.Size = New Size(1264, 681)
+        kryptonSplitContainer1.SplitterDistance = 240
+        kryptonSplitContainer1.TabIndex = 0
+        ' 
+        ' panelLeftMenu
+        ' 
+        panelLeftMenu.Controls.Add(btnManageAddresses)
+        panelLeftMenu.Controls.Add(btnManageCompanies)
+        panelLeftMenu.Controls.Add(btnManageReps)
+        Me.panelLeftMenu.Controls.Add(Me.btnManageReps)
+        panelLeftMenu.Controls.Add(lblMenuTitle)
+        panelLeftMenu.Dock = DockStyle.Fill
+        panelLeftMenu.Location = New Point(0, 0)
+        panelLeftMenu.Name = "panelLeftMenu"
+        panelLeftMenu.Size = New Size(240, 681)
+        panelLeftMenu.StateCommon.Color1 = Color.FromArgb(CByte(23), CByte(34), CByte(59))
+        panelLeftMenu.TabIndex = 0
+        ' 
+        ' btnManageAddresses
+        ' 
+        btnManageAddresses.Location = New Point(12, 130)
+        btnManageAddresses.Name = "btnManageAddresses"
+        btnManageAddresses.Size = New Size(216, 45)
+        btnManageAddresses.StateCommon.Border.Rounding = 6.0F
+        btnManageAddresses.TabIndex = 1
+        btnManageAddresses.Values.DropDownArrowColor = Color.Empty
+        btnManageAddresses.Values.Text = "Manage Addresses"
+        ' 
+        ' btnManageCompanies
+        ' 
+        btnManageCompanies.Location = New Point(12, 70)
+        btnManageCompanies.Name = "btnManageCompanies"
+        btnManageCompanies.Size = New Size(216, 45)
+        btnManageCompanies.StateCommon.Border.Rounding = 6.0F
+        btnManageCompanies.TabIndex = 2
+        btnManageCompanies.Values.DropDownArrowColor = Color.Empty
+        btnManageCompanies.Values.Text = "Manage Companies"
+
+        ' 
+        ' btnManageReps
+        ' 
+        btnManageReps.Location = New Point(12, 190)
+        btnManageReps.Name = "btnManageReps"
+        btnManageReps.Size = New Size(216, 45)
+        btnManageReps.TabIndex = 3
+        btnManageReps.StateCommon.Border.Rounding = 6.0F
+        btnManageReps.Values.DropDownArrowColor = Color.Empty
+        btnManageReps.Values.Text = "Manage Reps"
+        ' 
+        ' lblMenuTitle
+        ' 
+        lblMenuTitle.Location = New Point(12, 20)
+        lblMenuTitle.Name = "lblMenuTitle"
+        lblMenuTitle.Size = New Size(190, 30)
+        lblMenuTitle.StateCommon.ShortText.Color1 = Color.White
+        lblMenuTitle.StateCommon.ShortText.Font = New Font("Segoe UI", 11.25F, FontStyle.Bold)
+        lblMenuTitle.TabIndex = 3
+        lblMenuTitle.Values.Text = "NAVIGATION CORE"
+
+        ' 
+        ' panelMainWorkspace
+        ' 
+        panelMainWorkspace.Dock = DockStyle.Fill
+        panelMainWorkspace.Location = New Point(0, 0)
+        panelMainWorkspace.Name = "panelMainWorkspace"
+        panelMainWorkspace.Size = New Size(1019, 681)
+        panelMainWorkspace.TabIndex = 0
+        ' 
+        ' frmDashboard
+        ' 
+        AutoScaleDimensions = New SizeF(8.0F, 20.0F)
+        AutoScaleMode = AutoScaleMode.Font
+        ClientSize = New Size(1264, 681)
+        Controls.Add(kryptonSplitContainer1)
+        MinimumSize = New Size(1024, 600)
+        Name = "frmDashboard"
+        StartPosition = FormStartPosition.CenterScreen
+        Text = "MiX Consulting - Enterprise Registry Monitor"
+        CType(kryptonSplitContainer1.Panel1, ComponentModel.ISupportInitialize).EndInit()
+        kryptonSplitContainer1.Panel1.ResumeLayout(False)
+        CType(kryptonSplitContainer1.Panel2, ComponentModel.ISupportInitialize).EndInit()
+        kryptonSplitContainer1.Panel2.ResumeLayout(False)
+        CType(kryptonSplitContainer1, ComponentModel.ISupportInitialize).EndInit()
+        CType(panelLeftMenu, ComponentModel.ISupportInitialize).EndInit()
+        panelLeftMenu.ResumeLayout(False)
+        panelLeftMenu.PerformLayout()
+        CType(panelMainWorkspace, ComponentModel.ISupportInitialize).EndInit()
+        ResumeLayout(False)
 
     End Sub
 
@@ -135,4 +149,5 @@ Partial Class frmDashboard
     Public WithEvents btnManageAddresses As Krypton.Toolkit.KryptonButton
     Public WithEvents btnManageCompanies As Krypton.Toolkit.KryptonButton
     Friend WithEvents panelMainWorkspace As Krypton.Toolkit.KryptonPanel
+    Public WithEvents btnManageReps As Krypton.Toolkit.KryptonButton
 End Class

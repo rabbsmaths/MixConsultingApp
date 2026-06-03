@@ -2,6 +2,7 @@
 Imports System.Windows.Forms
 Imports Microsoft.Extensions.Configuration
 Imports Microsoft.Extensions.DependencyInjection
+Imports MiX_Consulting.Domain.Repositories
 Imports MiX_Consulting.Infrastructure.Repositories
 
 Public Module Program
@@ -26,13 +27,16 @@ Public Module Program
         services.AddTransient(Of MiX_Consulting.Domain.Interfaces.ICompanyRepository, CompanyRepository)()
         services.AddTransient(Of UserRepository)()
         services.AddTransient(Of CompanyRepository)()
-        services.AddTransient(Of AddressRepository)() ' Added to support address workflows
+        services.AddTransient(Of AddressRepository)()
+        services.AddTransient(Of IRepresentativeRepository, RepresentativeRepository)()
+
 
         ' Register Forms (Using frmDashboard to resolve the layout engine caching loop)
         services.AddTransient(Of frmLogin)()
         services.AddTransient(Of frmDashboard)()
         services.AddTransient(Of FrmCompanyManagement)()
         services.AddTransient(Of FrmAddressManagement)()
+        services.AddTransient(Of FrmRepresentativeManagement)()
 
         ' Build the provider
         ServiceProvider = services.BuildServiceProvider()

@@ -27,7 +27,9 @@ Public Class frmDashboard
     Private Sub BtnManageAddresses_Click(sender As Object, e As EventArgs) Handles btnManageAddresses.Click
         NavigateToWorkspace(Of FrmAddressManagement)()
     End Sub
-
+    Private Sub BtnManageReps_Click(sender As Object, e As EventArgs) Handles btnManageReps.Click
+        NavigateToWorkspace(Of FrmRepresentativeManagement)()
+    End Sub
     Private Sub NavigateToWorkspace(Of T As Form)()
         If _activeForm IsNot Nothing Then
             _activeForm.Close()
