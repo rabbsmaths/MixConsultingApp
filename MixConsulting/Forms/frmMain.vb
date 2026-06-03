@@ -1,55 +1,38 @@
 ﻿Imports System.Windows.Forms
 Imports Krypton.Toolkit
 Imports Microsoft.Extensions.DependencyInjection
+Imports MiX_Consulting.Domain.MiX_Consulting.Domain.Security
 Imports MiX_Consulting.Domain.Security
 Imports MiX_Consulting.Infrastructure.Repositories
 
-''' <summary>
-''' Central administration cockpit managing high-performance table lookups with scrolling session filters active.
-''' </summary>
 Public Class frmMain
     Inherits KryptonForm
 
-    Private WithEvents sysTimer As New Timer() With {.Interval = 1000}
-    Private WithEvents txtSearch As New KryptonTextBox() With {.Dock = DockStyle.Top}
-    Private gridCompanies As New KryptonDataGridView() With {.Dock = DockStyle.Fill}
     Private ReadOnly _companyRepo As CompanyRepository
 
-    ''' <summary>
-    ''' Parameterless Constructor required by the Visual Studio Form Designer.
-    ''' </summary>
     Public Sub New()
         MyBase.New()
         InitializeComponent()
-
         If Program.ServiceProvider IsNot Nothing Then
             _companyRepo = Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(Of CompanyRepository)(Program.ServiceProvider)
         End If
-
-        InitializeCustomUI()
+        ConfigureWorkspaceLayout()
     End Sub
 
-    ''' <summary>
-    ''' Primary Runtime Constructor utilized by the Dependency Injection Engine.
-    ''' </summary>
     Public Sub New(companyRepo As CompanyRepository)
         MyBase.New()
         InitializeComponent()
         _companyRepo = companyRepo
-        InitializeCustomUI()
+        ConfigureWorkspaceLayout()
     End Sub
 
-    Private Sub InitializeCustomUI()
+    Private Sub ConfigureWorkspaceLayout()
         Me.Text = "MiX Consulting - Enterprise Registry Monitor"
-        Me.Size = New Drawing.Size(950, 520)
         Me.StartPosition = FormStartPosition.CenterScreen
 
         gridCompanies.AllowUserToAddRows = False
         gridCompanies.ReadOnly = True
         gridCompanies.SelectionMode = DataGridViewSelectionMode.FullRowSelect
-
-        Me.Controls.Add(gridCompanies)
-        Me.Controls.Add(txtSearch)
 
         sysTimer.Start()
         LoadData()

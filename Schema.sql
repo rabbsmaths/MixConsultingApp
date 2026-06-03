@@ -82,5 +82,5 @@ CREATE NONCLUSTERED INDEX IX_Representatives_Lookup ON Representatives (CompanyI
 
 -- Seed Default Administration Profile (Username: 'admin' | Password: 'Password123')
 INSERT INTO AuthorizedUsers (Username, PasswordHash)
-VALUES ('admin', '$2a$12$K7v19bB4u7D2CgE9mZ6u1Oex3vRt7m9lKmPyW1QzN3G8hJn6KxyZu');
+VALUES ('admin', '$2a$12$yjtzlAENytJcRWT68G1nFO7yo94rfM6W4DBKRM10JhQ8rEARTxKti');
 GO
