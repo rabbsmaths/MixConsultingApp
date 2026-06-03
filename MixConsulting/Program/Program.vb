@@ -25,10 +25,13 @@ Public Module Program
         ' Register Repositories
         services.AddTransient(Of UserRepository)()
         services.AddTransient(Of CompanyRepository)()
+        services.AddTransient(Of AddressRepository)() ' Added to support address workflows
 
-        ' Register Forms (Updated names to fix Capitalization/Naming Rule Violations)
+        ' Register Forms (Using frmDashboard to resolve the layout engine caching loop)
         services.AddTransient(Of frmLogin)()
-        services.AddTransient(Of frmMain)()
+        services.AddTransient(Of frmDashboard)()
+        services.AddTransient(Of FrmCompanyManagement)()
+        services.AddTransient(Of FrmAddressManagement)()
 
         ' Build the provider
         ServiceProvider = services.BuildServiceProvider()
@@ -37,8 +40,9 @@ Public Module Program
         ' Run application lifecycle through DI container
         Using loginForm = ServiceProvider.GetRequiredService(Of frmLogin)()
             If loginForm.ShowDialog() = DialogResult.OK Then
-                Dim mainForm = ServiceProvider.GetRequiredService(Of frmMain)()
-                Application.Run(mainForm)
+                ' Pull and run our fresh dashboard workspace container
+                Dim mainDashboard = ServiceProvider.GetRequiredService(Of frmDashboard)()
+                Application.Run(mainDashboard)
             Else
                 Application.Exit()
             End If
