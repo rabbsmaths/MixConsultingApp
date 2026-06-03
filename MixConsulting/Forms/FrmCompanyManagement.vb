@@ -1,5 +1,6 @@
 ﻿Imports System.Windows.Forms
 Imports Krypton.Toolkit
+Imports MiX_Consulting.Domain.Interfaces
 Imports MiX_Consulting.Domain.Repositories ' Added to support the decoupled layer
 
 Public Class FrmCompanyManagement

@@ -3,10 +3,12 @@ Imports Dapper
 Imports Microsoft.Data.SqlClient
 Imports Microsoft.Extensions.Configuration
 Imports MiX_Consulting.Domain.DTOs
+Imports MiX_Consulting.Domain.Interfaces
 Imports NLog
 
 Namespace Repositories
     Public Class AddressRepository
+        Implements IAddressRepository
         Private ReadOnly _connStr As String
         Private Shared ReadOnly ErrLogger As Logger = LogManager.GetCurrentClassLogger()
 
@@ -63,6 +65,22 @@ Namespace Repositories
                 ErrLogger.Error(ex, $"Constraints violation or execution fault dropping address ID: {addressId}")
                 Throw New ApplicationException("The selected record could not be removed. Verify that no active corporate profiles are linked to this location.")
             End Try
+        End Sub
+
+        Private Function IAddressRepository_GetAllAddresses() As IEnumerable(Of AddressLookupDTO) Implements IAddressRepository.GetAllAddresses
+            Return GetAllAddresses()
+        End Function
+
+        Private Sub IAddressRepository_AddAddress(line1 As String, line2 As String, city As String, postalCode As String) Implements IAddressRepository.AddAddress
+            AddAddress(line1, line2, city, postalCode)
+        End Sub
+
+        Private Sub IAddressRepository_UpdateAddress(addressId As Integer, line1 As String, line2 As String, city As String, postalCode As String) Implements IAddressRepository.UpdateAddress
+            UpdateAddress(addressId, line1, line2, city, postalCode)
+        End Sub
+
+        Private Sub IAddressRepository_DeleteAddress(addressId As Integer) Implements IAddressRepository.DeleteAddress
+            DeleteAddress(addressId)
         End Sub
     End Class
 End Namespace

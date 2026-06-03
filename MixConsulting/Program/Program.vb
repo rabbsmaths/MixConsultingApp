@@ -23,7 +23,7 @@ Public Module Program
         services.AddSingleton(Of IConfiguration)(configuration)
 
         ' Register Repositories
-        services.AddTransient(Of MiX_Consulting.Domain.Repositories.ICompanyRepository, CompanyRepository)()
+        services.AddTransient(Of MiX_Consulting.Domain.Interfaces.ICompanyRepository, CompanyRepository)()
         services.AddTransient(Of UserRepository)()
         services.AddTransient(Of CompanyRepository)()
         services.AddTransient(Of AddressRepository)() ' Added to support address workflows

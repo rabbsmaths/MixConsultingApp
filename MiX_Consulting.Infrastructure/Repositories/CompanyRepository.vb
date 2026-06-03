@@ -6,6 +6,7 @@ Imports NLog
 Imports MiX_Consulting.Domain
 Imports MiX_Consulting.Domain.Repositories
 Imports MiX_Consulting.Domain.DTOs
+Imports MiX_Consulting.Domain.Interfaces
 
 Namespace Repositories
     Public Class CompanyRepository

@@ -1,7 +1,7 @@
 ﻿Imports System.Collections.Generic
 Imports MiX_Consulting.Domain.DTOs
 
-Namespace Repositories
+Namespace Interfaces
     Public Interface ICompanyRepository
 
         ''' <summary>

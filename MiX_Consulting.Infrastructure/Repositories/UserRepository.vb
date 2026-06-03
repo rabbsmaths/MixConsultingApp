@@ -2,11 +2,12 @@
 Imports Microsoft.Data.SqlClient
 Imports Microsoft.Extensions.Configuration
 Imports MiX_Consulting.Domain
-Imports MiX_Consulting.Domain.Models ' Adjust if your User model lives here
+Imports MiX_Consulting.Domain.Interfaces
 Imports NLog
 
 Namespace Repositories
     Public Class UserRepository
+        Implements IUserRepository
         Private ReadOnly _connStr As String
         Private Shared ReadOnly ErrLogger As Logger = LogManager.GetCurrentClassLogger()
 
@@ -32,6 +33,10 @@ Namespace Repositories
                 ErrLogger.Error(ex, "Database framework driver exception raised during identity authentication parsing.")
                 Return Nothing
             End Try
+        End Function
+
+        Private Function IUserRepository_GetByUsername(username As String) As User Implements IUserRepository.GetByUsername
+            Return GetByUsername(username)
         End Function
     End Class
 End Namespace
