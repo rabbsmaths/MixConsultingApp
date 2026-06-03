@@ -6,9 +6,13 @@
         Public Property City As String
         Public Property PostalCode As String
 
+        ' MUST BE EXPLICITLY PUBLIC!
         Public ReadOnly Property InlineDisplay As String
             Get
-                Return $"{Line1} ({City})"
+                ' Fallback checks handle unassigned fields safely
+                Dim street As String = If(String.IsNullOrWhiteSpace(Line1), "No Street Address", Line1)
+                Dim location As String = If(String.IsNullOrWhiteSpace(City), "Unknown City", City)
+                Return $"{street} ({location})"
             End Get
         End Property
     End Class

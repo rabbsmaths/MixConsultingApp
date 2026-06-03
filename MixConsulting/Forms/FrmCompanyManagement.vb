@@ -1,14 +1,16 @@
 ﻿Imports System.Windows.Forms
 Imports Krypton.Toolkit
-Imports MiX_Consulting.Infrastructure.Repositories
+Imports MiX_Consulting.Domain.Repositories ' Added to support the decoupled layer
 
 Public Class FrmCompanyManagement
     Inherits Form
 
-    Private ReadOnly _companyRepo As CompanyRepository
+    ' Pointed to the Interface type to match modern DI guidelines
+    Private ReadOnly _companyRepo As ICompanyRepository
     Private _selectedCompanyId As Integer = 0
 
-    Public Sub New(companyRepo As CompanyRepository)
+    ' Updated constructor parameter type to handle the ICompanyRepository contract safely
+    Public Sub New(companyRepo As ICompanyRepository)
         MyBase.New()
         InitializeComponent()
         _companyRepo = companyRepo
@@ -31,16 +33,28 @@ Public Class FrmCompanyManagement
         End Try
     End Sub
 
+    ''' <summary>
+    ''' Populates the lookup field with specific configurations assigned in sequence
+    ''' </summary>
     Private Sub RefreshAddressDropdown()
         Try
             If _companyRepo IsNot Nothing Then
-                cmbAddresses.DataSource = _companyRepo.GetAllAddresses().ToList()
-                cmbAddresses.DisplayMember = "InlineDisplay"
+                ' 1. Fetch your dataset cleanly as a separate reference array
+                Dim addressList = _companyRepo.GetAllAddresses().ToList()
+
+                ' 2. Detach old layout states to reset binding engines safely
+                cmbAddresses.DataSource = Nothing
+
+                ' 3. MAP STRINGS FIRST: Tell the control how to link fields before it draws rows
                 cmbAddresses.ValueMember = "AddressID"
+                cmbAddresses.DisplayMember = "InlineDisplay"
+
+                ' 4. BIND LAST: Passing data sets here now evaluates mapping configurations smoothly
+                cmbAddresses.DataSource = addressList
                 cmbAddresses.SelectedIndex = -1
             End If
         Catch ex As Exception
-            KryptonMessageBox.Show("Could not initialize dictionary layout lists.", "Lookup Error", KryptonMessageBoxButtons.OK, KryptonMessageBoxIcon.Warning)
+            KryptonMessageBox.Show("Could not initialize dictionary layout lists. Details: " & ex.Message, "Lookup Error", KryptonMessageBoxButtons.OK, KryptonMessageBoxIcon.Warning)
         End Try
     End Sub
 
