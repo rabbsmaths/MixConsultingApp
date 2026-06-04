@@ -1,6 +1,7 @@
 ﻿Imports System.Windows.Forms
 Imports Krypton.Toolkit
 Imports Microsoft.Extensions.DependencyInjection
+Imports MiX_Consulting.Domain.MiX_Consulting.Domain.Security
 
 Public Class frmDashboard
     Inherits KryptonForm
@@ -49,6 +50,28 @@ Public Class frmDashboard
     End Sub
 
     Private Sub SysTimer_Tick(sender As Object, e As EventArgs) Handles sysTimer.Tick
-        ' Session token timeouts go here if required
+        ' Check if the session has expired
+        If SessionManager.IsExpired Then
+            ' Stop timer to prevent multiple triggers
+            sysTimer.Stop()
+
+            ' Notify the user
+            KryptonMessageBox.Show("Your session has expired due to inactivity. Please log in again.",
+                                   "Session Expired",
+                                   KryptonMessageBoxButtons.OK,
+                                   KryptonMessageBoxIcon.Information)
+
+            ' Terminate session context
+            SessionManager.TerminateSession()
+
+            ' Close the dashboard to return to the login screen
+            Me.DialogResult = DialogResult.Abort ' Or use a custom status
+            Me.Close()
+        End If
     End Sub
+
+    Private Sub frmDashboard_MouseMove(sender As Object, e As MouseEventArgs) Handles MyBase.MouseMove
+        SessionManager.RefreshSession()
+    End Sub
+
 End Class
