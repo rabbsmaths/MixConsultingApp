@@ -22,8 +22,8 @@ Partial Class frmDashboard
         panelLeftMenu = New Krypton.Toolkit.KryptonPanel()
         btnManageAddresses = New Krypton.Toolkit.KryptonButton()
         btnManageCompanies = New Krypton.Toolkit.KryptonButton()
-        lblMenuTitle = New Krypton.Toolkit.KryptonLabel()
         btnManageReps = New Krypton.Toolkit.KryptonButton()
+        lblMenuTitle = New Krypton.Toolkit.KryptonLabel()
         panelMainWorkspace = New Krypton.Toolkit.KryptonPanel()
         CType(kryptonSplitContainer1, ComponentModel.ISupportInitialize).BeginInit()
         CType(kryptonSplitContainer1.Panel1, ComponentModel.ISupportInitialize).BeginInit()
@@ -60,7 +60,6 @@ Partial Class frmDashboard
         panelLeftMenu.Controls.Add(btnManageAddresses)
         panelLeftMenu.Controls.Add(btnManageCompanies)
         panelLeftMenu.Controls.Add(btnManageReps)
-        Me.panelLeftMenu.Controls.Add(Me.btnManageReps)
         panelLeftMenu.Controls.Add(lblMenuTitle)
         panelLeftMenu.Dock = DockStyle.Fill
         panelLeftMenu.Location = New Point(0, 0)
@@ -71,10 +70,10 @@ Partial Class frmDashboard
         ' 
         ' btnManageAddresses
         ' 
-        btnManageAddresses.Location = New Point(12, 130)
+        btnManageAddresses.Location = New Point(12, 207)
         btnManageAddresses.Name = "btnManageAddresses"
         btnManageAddresses.Size = New Size(216, 45)
-        btnManageAddresses.StateCommon.Border.Rounding = 6.0F
+        btnManageAddresses.StateCommon.Border.Rounding = 6F
         btnManageAddresses.TabIndex = 1
         btnManageAddresses.Values.DropDownArrowColor = Color.Empty
         btnManageAddresses.Values.Text = "Manage Addresses"
@@ -84,21 +83,20 @@ Partial Class frmDashboard
         btnManageCompanies.Location = New Point(12, 70)
         btnManageCompanies.Name = "btnManageCompanies"
         btnManageCompanies.Size = New Size(216, 45)
-        btnManageCompanies.StateCommon.Border.Rounding = 6.0F
+        btnManageCompanies.StateCommon.Border.Rounding = 6F
         btnManageCompanies.TabIndex = 2
         btnManageCompanies.Values.DropDownArrowColor = Color.Empty
         btnManageCompanies.Values.Text = "Manage Companies"
-
         ' 
         ' btnManageReps
         ' 
-        btnManageReps.Location = New Point(12, 190)
+        btnManageReps.Location = New Point(12, 138)
         btnManageReps.Name = "btnManageReps"
         btnManageReps.Size = New Size(216, 45)
+        btnManageReps.StateCommon.Border.Rounding = 6F
         btnManageReps.TabIndex = 3
-        btnManageReps.StateCommon.Border.Rounding = 6.0F
         btnManageReps.Values.DropDownArrowColor = Color.Empty
-        btnManageReps.Values.Text = "Manage Reps"
+        btnManageReps.Values.Text = "Manage Representatives"
         ' 
         ' lblMenuTitle
         ' 
@@ -109,7 +107,6 @@ Partial Class frmDashboard
         lblMenuTitle.StateCommon.ShortText.Font = New Font("Segoe UI", 11.25F, FontStyle.Bold)
         lblMenuTitle.TabIndex = 3
         lblMenuTitle.Values.Text = "NAVIGATION CORE"
-
         ' 
         ' panelMainWorkspace
         ' 
@@ -121,7 +118,7 @@ Partial Class frmDashboard
         ' 
         ' frmDashboard
         ' 
-        AutoScaleDimensions = New SizeF(8.0F, 20.0F)
+        AutoScaleDimensions = New SizeF(8F, 20F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(1264, 681)
         Controls.Add(kryptonSplitContainer1)

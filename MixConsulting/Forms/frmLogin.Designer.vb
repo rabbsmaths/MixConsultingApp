@@ -16,70 +16,73 @@ Partial Class frmLogin
 
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Me.txtUsername = New Krypton.Toolkit.KryptonTextBox()
-        Me.txtPassword = New Krypton.Toolkit.KryptonTextBox()
-        Me.btnLogin = New Krypton.Toolkit.KryptonButton()
-        Me.lblUserHeader = New Krypton.Toolkit.KryptonLabel()
-        Me.lblPassHeader = New Krypton.Toolkit.KryptonLabel()
-        Me.SuspendLayout()
-        '
-        'lblUserHeader
-        '
-        Me.lblUserHeader.Location = New System.Drawing.Point(20, 15)
-        Me.lblUserHeader.Name = "lblUserHeader"
-        Me.lblUserHeader.Size = New System.Drawing.Size(110, 20)
-        Me.lblUserHeader.Text = "Identity Username:"
-        '
-        'txtUsername
-        '
-        Me.txtUsername.Location = New System.Drawing.Point(20, 38)
-        Me.txtUsername.Name = "txtUsername"
-        Me.txtUsername.Size = New System.Drawing.Size(265, 23)
-        Me.txtUsername.StateCommon.Border.Rounding = 5
-        Me.txtUsername.TabIndex = 0
-        '
-        'lblPassHeader
-        '
-        Me.lblPassHeader.Location = New System.Drawing.Point(20, 70)
-        Me.lblPassHeader.Name = "lblPassHeader"
-        Me.lblPassHeader.Size = New System.Drawing.Size(108, 20)
-        Me.lblPassHeader.Text = "Security Password:"
-        '
-        'txtPassword
-        '
-        Me.txtPassword.Location = New System.Drawing.Point(20, 93)
-        Me.txtPassword.Name = "txtPassword"
-        Me.txtPassword.PasswordChar = "*"c
-        Me.txtPassword.Size = New System.Drawing.Size(265, 23)
-        Me.txtPassword.StateCommon.Border.Rounding = 5
-        Me.txtPassword.TabIndex = 1
-        '
-        'btnLogin
-        '
-        Me.btnLogin.Location = New System.Drawing.Point(20, 135)
-        Me.btnLogin.Name = "btnLogin"
-        Me.btnLogin.Size = New System.Drawing.Size(265, 32)
-        Me.btnLogin.TabIndex = 2
-        Me.btnLogin.Values.Text = "Authenticate Security Token"
-        '
-        'frmLogin
-        '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 20.0!)
-        Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(304, 186)
-        Me.Controls.Add(Me.lblUserHeader)
-        Me.Controls.Add(Me.txtUsername)
-        Me.Controls.Add(Me.lblPassHeader)
-        Me.Controls.Add(Me.txtPassword)
-        Me.Controls.Add(Me.btnLogin)
-        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
-        Me.MaximizeBox = False
-        Me.MinimizeBox = False
-        Me.Name = "frmLogin"
-        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "POPIA Verification Gateway"
-        Me.ResumeLayout(False)
-        Me.PerformLayout()
+        txtUsername = New Krypton.Toolkit.KryptonTextBox()
+        txtPassword = New Krypton.Toolkit.KryptonTextBox()
+        btnLogin = New Krypton.Toolkit.KryptonButton()
+        lblUserHeader = New Krypton.Toolkit.KryptonLabel()
+        lblPassHeader = New Krypton.Toolkit.KryptonLabel()
+        SuspendLayout()
+        ' 
+        ' txtUsername
+        ' 
+        txtUsername.Location = New Point(54, 57)
+        txtUsername.Name = "txtUsername"
+        txtUsername.Size = New Size(265, 31)
+        txtUsername.StateCommon.Border.Rounding = 5F
+        txtUsername.TabIndex = 0
+        ' 
+        ' txtPassword
+        ' 
+        txtPassword.Location = New Point(54, 124)
+        txtPassword.Name = "txtPassword"
+        txtPassword.PasswordChar = "*"c
+        txtPassword.Size = New Size(265, 31)
+        txtPassword.StateCommon.Border.Rounding = 5F
+        txtPassword.TabIndex = 1
+        ' 
+        ' btnLogin
+        ' 
+        btnLogin.Location = New Point(54, 178)
+        btnLogin.Name = "btnLogin"
+        btnLogin.Size = New Size(265, 32)
+        btnLogin.TabIndex = 2
+        btnLogin.Values.DropDownArrowColor = Color.Empty
+        btnLogin.Values.Text = "Login"
+        ' 
+        ' lblUserHeader
+        ' 
+        lblUserHeader.Location = New Point(54, 27)
+        lblUserHeader.Name = "lblUserHeader"
+        lblUserHeader.Size = New Size(110, 24)
+        lblUserHeader.TabIndex = 0
+        lblUserHeader.Values.Text = "Username:"
+        ' 
+        ' lblPassHeader
+        ' 
+        lblPassHeader.Location = New Point(54, 94)
+        lblPassHeader.Name = "lblPassHeader"
+        lblPassHeader.Size = New Size(108, 24)
+        lblPassHeader.TabIndex = 1
+        lblPassHeader.Values.Text = "Password:"
+        ' 
+        ' frmLogin
+        ' 
+        AutoScaleDimensions = New SizeF(8F, 20F)
+        AutoScaleMode = AutoScaleMode.Font
+        ClientSize = New Size(382, 253)
+        Controls.Add(lblUserHeader)
+        Controls.Add(txtUsername)
+        Controls.Add(lblPassHeader)
+        Controls.Add(txtPassword)
+        Controls.Add(btnLogin)
+        FormBorderStyle = FormBorderStyle.FixedDialog
+        MaximizeBox = False
+        MinimizeBox = False
+        Name = "frmLogin"
+        StartPosition = FormStartPosition.CenterScreen
+        Text = "POPIA Verification Gateway"
+        ResumeLayout(False)
+        PerformLayout()
     End Sub
 
     Friend WithEvents txtUsername As Krypton.Toolkit.KryptonTextBox

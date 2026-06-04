@@ -29,9 +29,10 @@ Partial Class FrmRepresentativeManagement
         btnDelete = New Krypton.Toolkit.KryptonButton()
         btnSave = New Krypton.Toolkit.KryptonButton()
         btnClear = New Krypton.Toolkit.KryptonButton()
-        txtSearch = New Krypton.Toolkit.KryptonTextBox()
         btnSearch = New Krypton.Toolkit.KryptonButton()
         topPanel = New Krypton.Toolkit.KryptonPanel()
+        lblSearchByName = New Krypton.Toolkit.KryptonLabel()
+        txtSearch = New Krypton.Toolkit.KryptonTextBox()
         CType(gridReps, ComponentModel.ISupportInitialize).BeginInit()
         CType(panelCrud, ComponentModel.ISupportInitialize).BeginInit()
         panelCrud.SuspendLayout()
@@ -77,7 +78,7 @@ Partial Class FrmRepresentativeManagement
         ' cmbCompanies
         ' 
         cmbCompanies.DropDownStyle = ComboBoxStyle.DropDownList
-        cmbCompanies.Location = New Point(140, 11)
+        cmbCompanies.Location = New Point(174, 11)
         cmbCompanies.Name = "cmbCompanies"
         cmbCompanies.Size = New Size(250, 26)
         cmbCompanies.TabIndex = 0
@@ -92,7 +93,7 @@ Partial Class FrmRepresentativeManagement
         ' 
         ' txtEmail
         ' 
-        txtEmail.Location = New Point(140, 107)
+        txtEmail.Location = New Point(174, 109)
         txtEmail.Name = "txtEmail"
         txtEmail.Size = New Size(250, 27)
         txtEmail.TabIndex = 3
@@ -107,7 +108,7 @@ Partial Class FrmRepresentativeManagement
         ' 
         ' txtCell
         ' 
-        txtCell.Location = New Point(140, 74)
+        txtCell.Location = New Point(174, 76)
         txtCell.Name = "txtCell"
         txtCell.Size = New Size(250, 27)
         txtCell.TabIndex = 2
@@ -122,7 +123,7 @@ Partial Class FrmRepresentativeManagement
         ' 
         ' txtFullName
         ' 
-        txtFullName.Location = New Point(140, 43)
+        txtFullName.Location = New Point(174, 43)
         txtFullName.Name = "txtFullName"
         txtFullName.Size = New Size(250, 27)
         txtFullName.TabIndex = 1
@@ -137,7 +138,7 @@ Partial Class FrmRepresentativeManagement
         ' 
         ' btnDelete
         ' 
-        btnDelete.Location = New Point(560, 55)
+        btnDelete.Location = New Point(595, 55)
         btnDelete.Name = "btnDelete"
         btnDelete.Size = New Size(120, 35)
         btnDelete.TabIndex = 5
@@ -146,7 +147,7 @@ Partial Class FrmRepresentativeManagement
         ' 
         ' btnSave
         ' 
-        btnSave.Location = New Point(420, 55)
+        btnSave.Location = New Point(437, 55)
         btnSave.Name = "btnSave"
         btnSave.Size = New Size(130, 35)
         btnSave.TabIndex = 4
@@ -155,32 +156,25 @@ Partial Class FrmRepresentativeManagement
         ' 
         ' btnClear
         ' 
-        btnClear.Location = New Point(690, 55)
+        btnClear.Location = New Point(742, 55)
         btnClear.Name = "btnClear"
         btnClear.Size = New Size(85, 35)
         btnClear.TabIndex = 6
         btnClear.Values.DropDownArrowColor = Color.Empty
         btnClear.Values.Text = "Reset"
         ' 
-        ' txtSearch
-        ' 
-        txtSearch.Dock = DockStyle.Left
-        txtSearch.Location = New Point(0, 0)
-        txtSearch.Name = "txtSearch"
-        txtSearch.Size = New Size(300, 27)
-        txtSearch.TabIndex = 0
-        ' 
         ' btnSearch
         ' 
-        btnSearch.Location = New Point(310, 5)
+        btnSearch.Location = New Point(398, 0)
         btnSearch.Name = "btnSearch"
-        btnSearch.Size = New Size(100, 35)
+        btnSearch.Size = New Size(100, 39)
         btnSearch.TabIndex = 1
         btnSearch.Values.DropDownArrowColor = Color.Empty
         btnSearch.Values.Text = "Filter Data"
         ' 
         ' topPanel
         ' 
+        topPanel.Controls.Add(lblSearchByName)
         topPanel.Controls.Add(txtSearch)
         topPanel.Controls.Add(btnSearch)
         topPanel.Dock = DockStyle.Top
@@ -188,6 +182,21 @@ Partial Class FrmRepresentativeManagement
         topPanel.Name = "topPanel"
         topPanel.Size = New Size(1019, 45)
         topPanel.TabIndex = 1
+        ' 
+        ' lblSearchByName
+        ' 
+        lblSearchByName.Location = New Point(3, 0)
+        lblSearchByName.Name = "lblSearchByName"
+        lblSearchByName.Size = New Size(107, 24)
+        lblSearchByName.TabIndex = 3
+        lblSearchByName.Values.Text = "Search Name"
+        ' 
+        ' txtSearch
+        ' 
+        txtSearch.Location = New Point(116, 0)
+        txtSearch.Name = "txtSearch"
+        txtSearch.Size = New Size(265, 27)
+        txtSearch.TabIndex = 2
         ' 
         ' FrmRepresentativeManagement
         ' 
@@ -213,7 +222,6 @@ Partial Class FrmRepresentativeManagement
 
     Public WithEvents gridReps As Krypton.Toolkit.KryptonDataGridView
     Public WithEvents panelCrud As Krypton.Toolkit.KryptonPanel
-    Public WithEvents txtSearch As Krypton.Toolkit.KryptonTextBox
     Public WithEvents btnSearch As Krypton.Toolkit.KryptonButton
     Public WithEvents cmbCompanies As Krypton.Toolkit.KryptonComboBox
     Public WithEvents lblCompany As Krypton.Toolkit.KryptonLabel
@@ -227,4 +235,6 @@ Partial Class FrmRepresentativeManagement
     Public WithEvents btnSave As Krypton.Toolkit.KryptonButton
     Public WithEvents btnClear As Krypton.Toolkit.KryptonButton
     Friend WithEvents topPanel As Krypton.Toolkit.KryptonPanel
+    Friend WithEvents lblSearchByName As Krypton.Toolkit.KryptonLabel
+    Public WithEvents txtSearch As Krypton.Toolkit.KryptonTextBox
 End Class
