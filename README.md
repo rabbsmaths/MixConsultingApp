@@ -1,22 +1,60 @@
-﻿# MiX Consulting Profile Management Engine
+MiX Consulting Profile Management Engine
+Enterprise Administration Workspace | .NET 8.0 | 3-Tier Architecture
 
-An enterprise-grade, high-performance administration desktop workspace built using **VB.NET (.NET 8.0)** following rigorous **Domain-Driven Design (DDD)** decoupling paradigms.
+1. Architectural Philosophy
+The system is built on a 3-Tier Architecture that enforces a clean separation of concerns, ensuring the application remains maintainable, secure, and scalable.
 
-## 🏢 Structural Boundaries & System Normalization
+A. Presentation Layer (MiX_Consulting.Presentation)
+Role: User interface and user interaction management.
 
-### 1. Presentation Layer (`MiX_Consulting.Presentation`)
-- **UI Architecture:** Renders modern flat environments natively leveraging the open-source **Krypton Toolkit**, discarding legacy square WinForms components.
-- **Sliding Security Handlers:** Implements custom `IMessageFilter` configurations hooking directly into underlying Win32 window message queues. It continuously updates a rolling 15-minute operational limit across all focus areas. If breached, it intercepts active threads, completely isolates visual data grids from visibility, and requires re-authentication.
+Technology: Krypton Toolkit for modern, flat-design UI.
 
-### 2. Domain Layer (`MiX_Consulting.Domain`)
-- **Entity Normalization:** Implements pure Object-Oriented models with private backing fields and explicit validation properties using structured `Get` and `Set` methods. 
-- **Decoupled Architecture:** Contains zero references to data tracking framework engines, external component modules, or database contexts.
+Security: Implements a global IMessageFilter that intercepts Win32 messages (WM_MOUSEMOVE, WM_LBUTTONDOWN, WM_KEYDOWN) to maintain a rolling session-timeout heartbeat.
 
-### 3. Infrastructure Layer (`MiX_Consulting.Infrastructure`)
-- **Data Query Engine:** Employs **Dapper Micro-ORM** optimization routines to execute fast many-to-many joins across associative bridge mappings (`CompanyAddresses`). This resolves scenarios where multiple different corporate structures inhabit the identical office location without replicating data strings.
-- **Auditing Infrastructure:** Integrates targeted **NLog** channels. General operational diagnostic paths flow into log targets while compliance updates loop directly into specialized files (`security-audit-*.log`).
+B. Domain Layer (MiX_Consulting.Domain)
+Role: The "Source of Truth" for business logic.
 
-## 🚀 Assembly and Execution Verification
-1. Run the database configuration logic contained inside the `schema.sql` model script against your local SQL Express container.
-2. Confirm connection parameters within `appsettings.json` address your local active data instances accurately.
-3. Launch the primary solution project within Visual Studio, compile all layers, and initialize application tracking processes (`F5`).
+Domain Models: Uses classic Encapsulation (private fields + explicit Get/Set logic) to enforce business rules internally before data is committed.
+
+DTOs (Data Transfer Objects): Uses "anemic" models (auto-implemented properties) to serve as lightweight data carriers. This decouples the UI from the database, allowing you to refactor SQL tables without breaking your forms.
+
+C. Infrastructure Layer (MiX_Consulting.Infrastructure)
+Role: Data access and external integration.
+
+Query Engine: Uses Dapper Micro-ORM for high-performance data mapping. Dapper is preferred over EF Core for its raw speed and transparency, and over ADO.NET for its ability to auto-map SQL results directly into your DTOs without manual boilerplate code.
+
+Security & Auditing: Uses BCrypt.Net-Next for secure password hashing and NLog for high-fidelity security logging (e.g., failed logins, session terminations).
+
+2. Security: Why BCrypt.Net-Next?
+For password security, this engine utilizes BCrypt.Net-Next because it is the industry standard for modern .NET applications:
+
+Work Factor (Cost): Unlike older hashing algorithms (like MD5 or SHA), BCrypt is "slow by design." You can increase the work factor as hardware gets faster, making brute-force attacks computationally infeasible.
+
+Automatic Salting: BCrypt.Net-Next automatically handles the generation and storage of a unique salt for every password. This eliminates the risk of "Rainbow Table" attacks where attackers use pre-computed hash lists.
+
+.NET 8 Compatibility: It is fully optimized for modern .NET 8 runtimes, providing a thread-safe, high-performance implementation that is easy to integrate into your repository pattern.
+
+3. Deployment & Setup
+Prerequisites
+Visual Studio 2022 (v17.8+).
+
+.NET 8.0 SDK.
+
+SQL Server 2019+.
+
+Initialization Steps
+Database: Execute the Docs/Schema.sql script in your SQL instance.
+
+Admin Account: Run this query to provision your first admin:
+
+SQL
+INSERT INTO Users (Username, PasswordHash, IsAdmin)
+VALUES ('Admin', '$2a$11$f5/nKjJpW.99wJ1y3OaMue3e.1.aLhH0J6s9K5J1h3o2K4P5lM6uW', 1);
+3.  **Connectivity:** Update the `DefaultConnection` string in `appsettings.json` within the Presentation layer to point to your local instance.
+4.  **Run:** Set `MiX_Consulting.Presentation` as the **Startup Project** and press **F5**.
+
+### Login Credentials
+* **Username:** `Admin`
+* **Password:** `Password123`
+
+
