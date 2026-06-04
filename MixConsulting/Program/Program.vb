@@ -2,7 +2,7 @@
 Imports System.Windows.Forms
 Imports Microsoft.Extensions.Configuration
 Imports Microsoft.Extensions.DependencyInjection
-Imports MiX_Consulting.Domain.Repositories
+Imports MiX_Consulting.Domain.Interfaces
 Imports MiX_Consulting.Infrastructure.Repositories
 
 Public Module Program

@@ -3,7 +3,7 @@ Imports Dapper
 Imports Microsoft.Data.SqlClient
 Imports Microsoft.Extensions.Configuration
 Imports MiX_Consulting.Domain
-Imports MiX_Consulting.Domain.Repositories
+Imports MiX_Consulting.Domain.Interfaces
 Imports NLog
 
 Namespace Repositories
@@ -20,16 +20,18 @@ Namespace Repositories
             End If
         End Sub
 
-        Public Function SearchRepresentatives(filterText As String) As IEnumerable(Of Representative) Implements IRepresentativeRepository.SearchRepresentatives
-            Const sql As String = "SELECT RepresentativeID, CompanyID, FullName, CellNumber, EmailAddress " &
-                                 "FROM Representatives WHERE FullName LIKE @Query;"
+        Public Function SearchRepresentatives(filterText As String) As IEnumerable(Of RepresentativeDTO) Implements IRepresentativeRepository.SearchRepresentatives
+            Const sql As String = "SELECT r.RepresentativeID, r.CompanyID, c.CompanyName, r.FullName, r.CellNumber, r.EmailAddress " &
+                          "FROM Representatives r " &
+                          "INNER JOIN Companies c ON r.CompanyID = c.CompanyID " &
+                          "WHERE r.FullName LIKE @Query;"
             Try
                 Using conn As New SqlConnection(_connStr)
-                    Return conn.Query(Of Representative)(sql, New With {.Query = "%" & filterText & "%"}).ToList()
+                    Return conn.Query(Of RepresentativeDTO)(sql, New With {.Query = "%" & filterText & "%"}).ToList()
                 End Using
             Catch ex As SqlException
-                ErrLogger.Error(ex, $"Relational backend query failure parsing criteria: '{filterText}'.")
-                Throw New ApplicationException("A database access exception occurred processing representative lookups.")
+                ErrLogger.Error(ex, $"Relational backend query failure: '{filterText}'.")
+                Throw New ApplicationException("A database access exception occurred.")
             End Try
         End Function
 

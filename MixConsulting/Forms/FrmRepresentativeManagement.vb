@@ -1,5 +1,6 @@
 ﻿Imports System.Windows.Forms
 Imports Krypton.Toolkit
+Imports MiX_Consulting.Domain.Interfaces
 Imports MiX_Consulting.Domain.Models
 Imports MiX_Consulting.Domain.Repositories
 
@@ -121,8 +122,17 @@ Public Class FrmRepresentativeManagement
 
     Private Sub FormatGridHeaders()
         If gridReps.Columns.Count > 0 Then
+            ' Hide IDs
             If gridReps.Columns("RepresentativeID") IsNot Nothing Then gridReps.Columns("RepresentativeID").Visible = False
             If gridReps.Columns("CompanyID") IsNot Nothing Then gridReps.Columns("CompanyID").Visible = False
+
+            ' Display new column
+            If gridReps.Columns("CompanyName") IsNot Nothing Then
+                gridReps.Columns("CompanyName").HeaderText = "Company"
+                gridReps.Columns("CompanyName").DisplayIndex = 0
+            End If
+
+            ' Existing headers
             If gridReps.Columns("FullName") IsNot Nothing Then gridReps.Columns("FullName").HeaderText = "Contact Full Name"
             If gridReps.Columns("CellNumber") IsNot Nothing Then gridReps.Columns("CellNumber").HeaderText = "Mobile Line"
             If gridReps.Columns("EmailAddress") IsNot Nothing Then gridReps.Columns("EmailAddress").HeaderText = "Email Target Address"
