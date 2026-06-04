@@ -1,7 +1,5 @@
-﻿Imports MiX_Consulting.Domain.Models
-
-Namespace Interfaces
+﻿Namespace Repositories
     Public Interface IUserRepository
-        Function GetByUsername(username As String) As User
+        Function GetByUsername(username As String) As UserDTO
     End Interface
 End Namespace
