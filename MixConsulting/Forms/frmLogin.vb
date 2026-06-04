@@ -34,7 +34,7 @@ Public Class frmLogin
 
     Private Sub btnLogin_Click(sender As Object, e As EventArgs) Handles btnLogin.Click
         If String.IsNullOrWhiteSpace(txtUsername.Text) OrElse String.IsNullOrWhiteSpace(txtPassword.Text) Then
-            KryptonMessageBox.Show("Please populate all credential.", "Validation Fault", KryptonMessageBoxButtons.OK, KryptonMessageBoxIcon.Warning)
+            KryptonMessageBox.Show("Please enter both a username and a password.", "Missing Information", KryptonMessageBoxButtons.OK, KryptonMessageBoxIcon.Warning)
             Exit Sub
         End If
 
@@ -46,7 +46,7 @@ Public Class frmLogin
                 Me.DialogResult = DialogResult.OK
                 Me.Close()
             Else
-                KryptonMessageBox.Show("Access Denied: Invalid privilege token assignment context.", "Security Rejection", KryptonMessageBoxButtons.OK, KryptonMessageBoxIcon.Error)
+                KryptonMessageBox.Show("Invalid username or password. Please try again.", "Login Failed", KryptonMessageBoxButtons.OK, KryptonMessageBoxIcon.Error)
             End If
         End If
     End Sub

@@ -38,8 +38,8 @@ Namespace Repositories
                     conn.Execute(sql, New With {.L1 = line1, .L2 = line2, .City = city, .Post = postalCode})
                 End Using
             Catch ex As SqlException
-                ErrLogger.Error(ex, "Insertion processing break inside the operational Address write channels.")
-                Throw New ApplicationException("Could not persist the physical address profile mapping data.")
+                ErrLogger.Error(ex, "Failed to save new address.")
+                Throw New ApplicationException("Could not save the new address.")
             End Try
         End Sub
 
@@ -50,8 +50,8 @@ Namespace Repositories
                     conn.Execute(sql, New With {.L1 = line1, .L2 = line2, .City = city, .Post = postalCode, .ID = addressId})
                 End Using
             Catch ex As SqlException
-                ErrLogger.Error(ex, $"Failed modifying address entry entity identifier key: {addressId}")
-                Throw New ApplicationException("Execution failed when trying to apply structural updates to the address record.")
+                ErrLogger.Error(ex, $"Failed to update address ID: {addressId}")
+                Throw New ApplicationException("Could not update the address record.")
             End Try
         End Sub
 
@@ -62,8 +62,8 @@ Namespace Repositories
                     conn.Execute(sql, New With {.ID = addressId})
                 End Using
             Catch ex As SqlException
-                ErrLogger.Error(ex, $"Constraints violation or execution fault dropping address ID: {addressId}")
-                Throw New ApplicationException("The selected record could not be removed. Verify that no active corporate profiles are linked to this location.")
+                ErrLogger.Error(ex, $"Failed to delete address ID: {addressId}")
+                Throw New ApplicationException("The address could not be deleted. Please ensure it is not linked to any company profiles.")
             End Try
         End Sub
 

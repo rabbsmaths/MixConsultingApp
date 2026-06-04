@@ -6,7 +6,7 @@ Namespace MiX_Consulting.Domain.Security
 
         Public Property ActiveUser As String
         Public Property SessionDeadline As DateTime
-        Private ReadOnly InactivityLimitMinutes As Integer = 15
+        Private ReadOnly InactivityLimitMinutes As Integer = 1
 
         Public Sub StartSession(username As String)
             ActiveUser = username

@@ -25,7 +25,7 @@ Public Class FrmAddressManagement
                 FormatGridHeaders()
             End If
         Catch ex As Exception
-            KryptonMessageBox.Show(ex.Message, "Data Access Failure", KryptonMessageBoxButtons.OK, KryptonMessageBoxIcon.Error)
+            KryptonMessageBox.Show("Could not load the address list. Please try again later.", "Load Failed", KryptonMessageBoxButtons.OK, KryptonMessageBoxIcon.Error)
         End Try
     End Sub
 
@@ -42,36 +42,36 @@ Public Class FrmAddressManagement
 
     Private Sub BtnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
         If String.IsNullOrWhiteSpace(txtLine1.Text) OrElse String.IsNullOrWhiteSpace(txtCity.Text) Then
-            KryptonMessageBox.Show("Line 1 and City are required elements.", "Validation Error", KryptonMessageBoxButtons.OK, KryptonMessageBoxIcon.Warning)
+            KryptonMessageBox.Show("Please enter at least Address Line 1 and the City.", "Missing Information", KryptonMessageBoxButtons.OK, KryptonMessageBoxIcon.Warning)
             Exit Sub
         End If
 
         Try
             If _selectedAddressId = 0 Then
                 _addressRepo.AddAddress(txtLine1.Text.Trim(), txtLine2.Text.Trim(), txtCity.Text.Trim(), txtPostalCode.Text.Trim())
-                KryptonMessageBox.Show("Physical address index registered.", "Success", KryptonMessageBoxButtons.OK, KryptonMessageBoxIcon.Information)
+                KryptonMessageBox.Show("The address has been saved.", "Saved", KryptonMessageBoxButtons.OK, KryptonMessageBoxIcon.Information)
             Else
                 _addressRepo.UpdateAddress(_selectedAddressId, txtLine1.Text.Trim(), txtLine2.Text.Trim(), txtCity.Text.Trim(), txtPostalCode.Text.Trim())
-                KryptonMessageBox.Show("Address modifications saved.", "Success", KryptonMessageBoxButtons.OK, KryptonMessageBoxIcon.Information)
+                KryptonMessageBox.Show("The address has been updated.", "Updated", KryptonMessageBoxButtons.OK, KryptonMessageBoxIcon.Information)
             End If
             ResetFormState()
             LoadAddresses()
         Catch ex As Exception
-            KryptonMessageBox.Show(ex.Message, "Execution Error", KryptonMessageBoxButtons.OK, KryptonMessageBoxIcon.Error)
+            KryptonMessageBox.Show("An error occurred while saving the address. Please try again.", "Save Failed", KryptonMessageBoxButtons.OK, KryptonMessageBoxIcon.Error)
         End Try
     End Sub
 
     Private Sub BtnDelete_Click(sender As Object, e As EventArgs) Handles btnDelete.Click
         If _selectedAddressId = 0 Then Exit Sub
 
-        Dim confirm As DialogResult = KryptonMessageBox.Show("Are you sure you want to remove this address?", "Foreign key Rule Warning", KryptonMessageBoxButtons.YesNo, KryptonMessageBoxIcon.Question)
+        Dim confirm As DialogResult = KryptonMessageBox.Show("Are you sure you want to delete this address?", "Confirm Delete", KryptonMessageBoxButtons.YesNo, KryptonMessageBoxIcon.Question)
         If confirm = DialogResult.Yes Then
             Try
                 _addressRepo.DeleteAddress(_selectedAddressId)
                 ResetFormState()
                 LoadAddresses()
             Catch ex As Exception
-                KryptonMessageBox.Show(ex.Message, "Constraint Error", KryptonMessageBoxButtons.OK, KryptonMessageBoxIcon.Error)
+                KryptonMessageBox.Show("The address could not be deleted. It may be linked to a company.", "Delete Failed", KryptonMessageBoxButtons.OK, KryptonMessageBoxIcon.Error)
             End Try
         End If
     End Sub

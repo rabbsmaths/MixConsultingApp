@@ -26,7 +26,7 @@ Namespace Repositories
                     Return conn.QuerySingleOrDefault(Of UserDTO)(sql, New With {.Username = username})
                 End Using
             Catch ex As SqlException
-                ErrLogger.Error(ex, "Database driver exception during user lookup.")
+                ErrLogger.Error(ex, $"Database error during user lookup for: {username}")
                 Return Nothing
             End Try
         End Function

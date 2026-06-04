@@ -37,8 +37,8 @@ Namespace Repositories
                     Return conn.Query(Of CompanySummaryDTO)(sql, New With {.Query = "%" & filterText & "%"}).ToList()
                 End Using
             Catch ex As SqlException
-                ErrLogger.Error(ex, $"Infrastructure relational query failure on criteria: '{filterText}'.")
-                Throw New ApplicationException("A database access exception occurred processing search routines.")
+                ErrLogger.Error(ex, $"Failed to search for companies with filter: '{filterText}'.")
+                Throw New ApplicationException("An error occurred while searching for companies.")
             End Try
         End Function
 
@@ -64,8 +64,8 @@ Namespace Repositories
                     End Using
                 End Using
             Catch ex As SqlException
-                ErrLogger.Error(ex, "Transaction aborted during company write pipeline aggregation execution loops.")
-                Throw New ApplicationException("Data insertion transaction dropped due to connection failure state.")
+                ErrLogger.Error(ex, "Failed to save the new company profile.")
+                Throw New ApplicationException("Could not save the company profile. Please try again.")
             End Try
         End Sub
 
@@ -92,8 +92,8 @@ Namespace Repositories
                     End Using
                 End Using
             Catch ex As SqlException
-                ErrLogger.Error(ex, $"Failed modifying entity state contextual baseline reference ID: {companyId}")
-                Throw New ApplicationException("Data updating step pipeline sequence mapping fault encountered.")
+                ErrLogger.Error(ex, $"Failed to update company ID: {companyId}")
+                Throw New ApplicationException("Could not update the company profile.")
             End Try
         End Sub
 
@@ -107,8 +107,8 @@ Namespace Repositories
                     conn.Execute(sql, New With {.ID = companyId})
                 End Using
             Catch ex As SqlException
-                ErrLogger.Error(ex, $"Deletion transaction trace dropped abruptly for element identifier Key: {companyId}")
-                Throw New ApplicationException("Cascading entity removal sequence processing aborted by host layer.")
+                ErrLogger.Error(ex, $"Failed to delete company ID: {companyId}")
+                Throw New ApplicationException("The company profile could not be deleted.")
             End Try
         End Sub
 

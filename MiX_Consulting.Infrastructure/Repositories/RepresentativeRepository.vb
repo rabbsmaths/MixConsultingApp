@@ -30,8 +30,8 @@ Namespace Repositories
                     Return conn.Query(Of RepresentativeDTO)(sql, New With {.Query = "%" & filterText & "%"}).ToList()
                 End Using
             Catch ex As SqlException
-                ErrLogger.Error(ex, $"Relational backend query failure: '{filterText}'.")
-                Throw New ApplicationException("A database access exception occurred.")
+                ErrLogger.Error(ex, $"Failed to search for representatives with filter: '{filterText}'.")
+                Throw New ApplicationException("An error occurred while searching for representatives.")
             End Try
         End Function
 
@@ -42,7 +42,7 @@ Namespace Repositories
                     Return conn.Query(Of KeyValuePair(Of Integer, String))(sql).ToList()
                 End Using
             Catch ex As SqlException
-                ErrLogger.Error(ex, "Failed gathering corporate validation listing maps.")
+                ErrLogger.Error(ex, "Failed to load the list of companies.")
                 Return New List(Of KeyValuePair(Of Integer, String))()
             End Try
         End Function
@@ -54,8 +54,8 @@ Namespace Repositories
                     conn.Execute(sql, New With {.CoID = companyId, .Name = fullName, .Cell = cellNumber, .Email = emailAddress})
                 End Using
             Catch ex As SqlException
-                ErrLogger.Error(ex, "Insertion failure inside the core operational Representative pipeline channel.")
-                Throw New ApplicationException("Could not persist the corporate representative profile mapping data.")
+                ErrLogger.Error(ex, "Failed to save the new representative.")
+                Throw New ApplicationException("Could not save the representative profile.")
             End Try
         End Sub
 
@@ -66,8 +66,8 @@ Namespace Repositories
                     conn.Execute(sql, New With {.CoID = companyId, .Name = fullName, .Cell = cellNumber, .Email = emailAddress, .ID = repId})
                 End Using
             Catch ex As SqlException
-                ErrLogger.Error(ex, $"Failed modifying representative entry registry identifier key: {repId}")
-                Throw New ApplicationException("Execution failed when trying to apply structural updates to the profile record.")
+                ErrLogger.Error(ex, $"Failed to update representative ID: {repId}")
+                Throw New ApplicationException("Could not update the representative profile.")
             End Try
         End Sub
 
@@ -78,8 +78,8 @@ Namespace Repositories
                     conn.Execute(sql, New With {.ID = repId})
                 End Using
             Catch ex As SqlException
-                ErrLogger.Error(ex, $"Exception dropped while removing element ID: {repId}")
-                Throw New ApplicationException("The selected profile context could not be purged safely by host systems.")
+                ErrLogger.Error(ex, $"Failed to delete representative ID: {repId}")
+                Throw New ApplicationException("The representative profile could not be deleted.")
             End Try
         End Sub
     End Class

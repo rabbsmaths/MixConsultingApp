@@ -67,11 +67,11 @@ Public Class FrmRepresentativeManagement
 
     Private Sub BtnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
         If cmbCompanies.SelectedValue Is Nothing Then
-            KryptonMessageBox.Show("A parent profile link is required.", "Validation failure", KryptonMessageBoxButtons.OK, KryptonMessageBoxIcon.Warning)
+            KryptonMessageBox.Show("Please select a company.", "Missing Information", KryptonMessageBoxButtons.OK, KryptonMessageBoxIcon.Warning)
             Exit Sub
         End If
         If String.IsNullOrWhiteSpace(txtFullName.Text) Then
-            KryptonMessageBox.Show("Representative name path cannot be left blank.", "Validation failure", KryptonMessageBoxButtons.OK, KryptonMessageBoxIcon.Warning)
+            KryptonMessageBox.Show("Please enter the representative's full name.", "Missing Information", KryptonMessageBoxButtons.OK, KryptonMessageBoxIcon.Warning)
             Exit Sub
         End If
 
@@ -80,29 +80,29 @@ Public Class FrmRepresentativeManagement
         Try
             If _selectedRepId = 0 Then
                 _repRepo.AddRepresentative(companyId, txtFullName.Text.Trim(), txtCell.Text.Trim(), txtEmail.Text.Trim())
-                KryptonMessageBox.Show("Representative context stored.", "Complete", KryptonMessageBoxButtons.OK, KryptonMessageBoxIcon.Information)
+                KryptonMessageBox.Show("The representative has been saved.", "Saved", KryptonMessageBoxButtons.OK, KryptonMessageBoxIcon.Information)
             Else
                 _repRepo.UpdateRepresentative(_selectedRepId, companyId, txtFullName.Text.Trim(), txtCell.Text.Trim(), txtEmail.Text.Trim())
-                KryptonMessageBox.Show("Representative adjustments updated.", "Complete", KryptonMessageBoxButtons.OK, KryptonMessageBoxIcon.Information)
+                KryptonMessageBox.Show("The representative has been updated.", "Updated", KryptonMessageBoxButtons.OK, KryptonMessageBoxIcon.Information)
             End If
             ResetFormState()
             LoadData()
         Catch ex As Exception
-            KryptonMessageBox.Show(ex.Message, "Pipeline Fault", KryptonMessageBoxButtons.OK, KryptonMessageBoxIcon.Error)
+            KryptonMessageBox.Show("An error occurred while saving. Please try again.", "Save Failed", KryptonMessageBoxButtons.OK, KryptonMessageBoxIcon.Error)
         End Try
     End Sub
 
     Private Sub BtnDelete_Click(sender As Object, e As EventArgs) Handles btnDelete.Click
         If _selectedRepId = 0 Then Exit Sub
 
-        Dim check As DialogResult = KryptonMessageBox.Show("Delete selected user profile trace parameters?", "POPIA Guardrail System", KryptonMessageBoxButtons.YesNo, KryptonMessageBoxIcon.Question)
+        Dim check As DialogResult = KryptonMessageBox.Show("Are you sure you want to delete this representative?", "Confirm Delete", KryptonMessageBoxButtons.YesNo, KryptonMessageBoxIcon.Question)
         If check = DialogResult.Yes Then
             Try
                 _repRepo.DeleteRepresentative(_selectedRepId)
                 ResetFormState()
                 LoadData()
             Catch ex As Exception
-                KryptonMessageBox.Show(ex.Message, "Purge Dropped", KryptonMessageBoxButtons.OK, KryptonMessageBoxIcon.Error)
+                KryptonMessageBox.Show("The representative could not be deleted. Please try again.", "Delete Failed", KryptonMessageBoxButtons.OK, KryptonMessageBoxIcon.Error)
             End Try
         End If
     End Sub

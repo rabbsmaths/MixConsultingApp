@@ -55,7 +55,7 @@ Public Class FrmCompanyManagement
                 cmbAddresses.SelectedIndex = -1
             End If
         Catch ex As Exception
-            KryptonMessageBox.Show("Could not initialize dictionary layout lists. Details: " & ex.Message, "Lookup Error", KryptonMessageBoxButtons.OK, KryptonMessageBoxIcon.Warning)
+            KryptonMessageBox.Show("Could not load the address list. Please try again later.", "Load Failed", KryptonMessageBoxButtons.OK, KryptonMessageBoxIcon.Warning)
         End Try
     End Sub
 
@@ -75,7 +75,7 @@ Public Class FrmCompanyManagement
 
     Private Sub BtnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
         If String.IsNullOrWhiteSpace(txtCompanyName.Text) Then
-            KryptonMessageBox.Show("Company Name is a required structural parameter.", "Validation Rule", KryptonMessageBoxButtons.OK, KryptonMessageBoxIcon.Warning)
+            KryptonMessageBox.Show("Please enter the company name.", "Missing Information", KryptonMessageBoxButtons.OK, KryptonMessageBoxIcon.Warning)
             Exit Sub
         End If
 
@@ -87,29 +87,29 @@ Public Class FrmCompanyManagement
         Try
             If _selectedCompanyId = 0 Then
                 _companyRepo.AddCompany(txtCompanyName.Text.Trim(), txtVatNumber.Text.Trim(), txtRegNumber.Text.Trim(), targetAddrId)
-                KryptonMessageBox.Show("Corporate profile recorded successfully.", "Execution Complete", KryptonMessageBoxButtons.OK, KryptonMessageBoxIcon.Information)
+                KryptonMessageBox.Show("The company profile has been saved.", "Saved", KryptonMessageBoxButtons.OK, KryptonMessageBoxIcon.Information)
             Else
                 _companyRepo.UpdateCompany(_selectedCompanyId, txtCompanyName.Text.Trim(), txtVatNumber.Text.Trim(), txtRegNumber.Text.Trim(), targetAddrId)
-                KryptonMessageBox.Show("Profile adjustments updated.", "Execution Complete", KryptonMessageBoxButtons.OK, KryptonMessageBoxIcon.Information)
+                KryptonMessageBox.Show("The company profile has been updated.", "Updated", KryptonMessageBoxButtons.OK, KryptonMessageBoxIcon.Information)
             End If
             ResetFormState()
             LoadData()
         Catch ex As Exception
-            KryptonMessageBox.Show(ex.Message, "Transaction Fault", KryptonMessageBoxButtons.OK, KryptonMessageBoxIcon.Error)
+            KryptonMessageBox.Show("An error occurred while saving. Please try again.", "Save Failed", KryptonMessageBoxButtons.OK, KryptonMessageBoxIcon.Error)
         End Try
     End Sub
 
     Private Sub BtnDelete_Click(sender As Object, e As EventArgs) Handles btnDelete.Click
         If _selectedCompanyId = 0 Then Exit Sub
 
-        Dim confirm As DialogResult = KryptonMessageBox.Show("Are you sure you want to delete this profile context?", "POPIA Boundary Check", KryptonMessageBoxButtons.YesNo, KryptonMessageBoxIcon.Question)
+        Dim confirm As DialogResult = KryptonMessageBox.Show("Are you sure you want to delete this company profile?", "Confirm Delete", KryptonMessageBoxButtons.YesNo, KryptonMessageBoxIcon.Question)
         If confirm = DialogResult.Yes Then
             Try
                 _companyRepo.DeleteCompany(_selectedCompanyId)
                 ResetFormState()
                 LoadData()
             Catch ex As Exception
-                KryptonMessageBox.Show(ex.Message, "Purge Failure", KryptonMessageBoxButtons.OK, KryptonMessageBoxIcon.Error)
+                KryptonMessageBox.Show("The profile could not be deleted. Please try again.", "Delete Failed", KryptonMessageBoxButtons.OK, KryptonMessageBoxIcon.Error)
             End Try
         End If
     End Sub
